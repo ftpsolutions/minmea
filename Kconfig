@@ -1,0 +1,9 @@
+
+menu "minmea"
+
+menuconfig MINMEA
+	bool "A lightweight GPS NMEA 0183 parser"
+	help
+	  This option enables the minmea GPS NMEA 0183 parser library.
+
+endmenu

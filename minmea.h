@@ -234,8 +234,13 @@ static inline int_least32_t minmea_rescale(struct minmea_float *f, int_least32_t
  */
 static inline float minmea_tofloat(struct minmea_float *f)
 {
-    if (f->scale == 0)
-        return NAN;
+    if (f->scale == 0) {
+#ifndef __ZEPHYR__
+        return NaN;
+#else
+        return 0.0;
+#endif
+    }
     return (float) f->value / (float) f->scale;
 }
 
@@ -245,8 +250,13 @@ static inline float minmea_tofloat(struct minmea_float *f)
  */
 static inline float minmea_tocoord(struct minmea_float *f)
 {
-    if (f->scale == 0)
-        return NAN;
+    if (f->scale == 0) {
+#ifndef __ZEPHYR__
+        return NaN;
+#else
+        return 0.0;
+#endif
+    }
     int_least32_t degrees = f->value / (f->scale * 100);
     int_least32_t minutes = f->value % (f->scale * 100);
     return (float) degrees + (float) minutes / (60 * f->scale);

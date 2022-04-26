@@ -14,6 +14,13 @@
 #include <stdarg.h>
 #include <time.h>
 
+#ifdef __ZEPHYR__
+#include <sys/timeutil.h>
+
+#define INT_LEAST32_MAX __INT_LEAST32_MAX__
+#define timegm timeutil_timegm
+#endif
+
 #define boolstr(s) ((s) ? "true" : "false")
 
 static int hex2int(char c)
