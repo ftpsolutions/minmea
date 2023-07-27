@@ -17,7 +17,6 @@
 #ifdef __ZEPHYR__
 #include <zephyr/sys/timeutil.h>
 
-#define INT_LEAST32_MAX __INT_LEAST32_MAX__
 #define timegm timeutil_timegm
 #endif
 
